@@ -1,5 +1,5 @@
 # peksimet
-Library designed by evolutionoftheuniverse to fix number expressions on Turkish Wikipedia that do not comply with Turkish language orthographic rules.
+Library designed by evolutionoftheuniverse to fix number expressions primarily on Turkish Wikipedia that do not comply with Turkish language orthographic rules.
 
 peksimet (c) by evolutionoftheuniverse
 
