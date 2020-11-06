@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Custom filter functions to avoid unhappy inappropriateness
-'''
+"""
 
 #peksimet (c) by evolutionoftheuniverse
 #
@@ -24,7 +24,7 @@ LOGGER = logging.getLogger(__name__)
 TAG_REF = regex.compile(r'(<ref[^>]*>|<\/ref>)')
 
 def filter_ref(text, expr_start, expr_end):
-    '''Expression check between ref tags'''
+    """Expression check between ref tags"""
     if expr_end < expr_start:
         raise ValueError('expr_end must be bigger than expr_start')
     match = TAG_REF.finditer(text)
