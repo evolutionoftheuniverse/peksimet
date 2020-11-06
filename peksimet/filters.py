@@ -18,13 +18,13 @@ try:
     import regex
 except ImportError:
     regex = re
-    
+
 LOGGER = logging.getLogger(__name__)
 
 TAG_REF = regex.compile(r'(<ref[^>]*>|<\/ref>)')
 
 def filter_ref(text, expr_start, expr_end):
-    """Expression check between ref tags"""
+    """Expression check between ref tags."""
     if expr_end < expr_start:
         raise ValueError('expr_end must be bigger than expr_start')
     match = TAG_REF.finditer(text)
@@ -37,10 +37,10 @@ def filter_ref(text, expr_start, expr_end):
             if i.group(1).endswith('/>'):
                 continue
             if count % 2 == 0:
-                start = i.end() if i.group(1).startswith('<ref') and i.group(1).endswith('>') and not i.group(1).endswith('/>') else None
+                start = i.end() if i.group(1).startswith('<ref') and i.group(1).endswith('>') else None
             elif count % 2 != 0:
                 end = i.start() if i.group(1) == '</ref>' else None
-            if count > 1 and (not start or not end):
+            if not start or not end:
                 LOGGER.debug('Problematic ref tag on text near %s %d:%d, continued', i.group(1), i.start(), i.end())
                 warnings.warn(format('Problematic ref tag on text near {g} {s}:{e}, continued', g=i.group(1), s=i.start(), e=i.end()), SyntaxWarning)
                 continue
