@@ -27,14 +27,13 @@ PERCENTAGE = regex.compile(r'''(?:\s|\||\s\(|:\s|}})\s?(?:-?|\+?|<?|>?|~?|Â±?|â€
 def find_percentage(text):
     """Find percentages in text."""
     match = PERCENTAGE.finditer(text)
-    if match:
-        result = ()
-        for i in match:
-            try:
-                LOGGER.debug('Percentage %s have found between %d:%d', i.group(), i.start(), i.end())
-                result += (i.groups() + (i.group(), ) + (i.start(), ) + (i.end(), ), )
-            except ValueError:
-                LOGGER.debug('Value error in percentage: %s', i.group())
-        if result != ():
-            return result
+    result = ()
+    for i in match:
+        try:
+            LOGGER.debug('Percentage %s have found between %d:%d', i.group(), i.start(), i.end())
+            result += (i.groups() + (i.group(), ) + (i.start(), ) + (i.end(), ), )
+        except ValueError:
+            LOGGER.debug('Value error in percentage: %s', i.group())
+    if result != ():
+        return result
     return None
