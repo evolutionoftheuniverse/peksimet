@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Custom functions to find numerical expressions
-'''
+"""
 
 #peksimet (c) by evolutionoftheuniverse
 #
@@ -17,7 +17,7 @@ try:
     import regex
 except ImportError:
     regex = re
-    
+
 LOGGER = logging.getLogger(__name__)
 
 PERCENTAGE = regex.compile(r'''(?:\s|\||\s\(|:\s|}})\s?(?:-?|\+?|<?|>?|~?|±?|–?|∓?|≈?|≤?|≥?)\s?
@@ -25,7 +25,7 @@ PERCENTAGE = regex.compile(r'''(?:\s|\||\s\(|:\s|}})\s?(?:-?|\+?|<?|>?|~?|±?|�
 (?:\s|\||\)|:|,|'|’|}}|\s?-\s?)'''.replace('\n', ''))
     
 def find_percentage(text):
-    '''Find percentages in text'''
+    """Find percentages in text."""
     match = PERCENTAGE.finditer(text)
     if match:
         result = ()
